@@ -15,4 +15,10 @@ public class UserDao {
         entityManager.persist(userEntity);
         return userEntity;
     }
+
+    public UserEntity getUser(String userUuid) {
+        return entityManager.createNamedQuery("userByUuid", UserEntity.class)
+                .setParameter("uuid", userUuid)
+                .getSingleResult();
+    }
 }
